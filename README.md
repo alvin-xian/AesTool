@@ -10,7 +10,9 @@
 * openssl  
 
 # 接口参考
-详见aesencrypt.h  
+详见[aesencrypt.h ](https://github.com/alvin-xian/AesTool/blob/master/aesencrypt.h)
+
+ 
 
 # 心得体会
  * 1、AES128/AES192/AES256的判断取决于密钥长度，密钥128位就是AES128
