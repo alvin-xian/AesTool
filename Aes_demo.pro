@@ -58,14 +58,16 @@ macx{
 
 SOURCES += main.cpp\
 aesencrypt.cpp \
-        mainwindow.cpp \
-    base64/base64.cpp \
-    base64/hex.cpp
+    common/base64.cpp \
+    common/hex.cpp \
+    test.cpp
 #
-HEADERS  += mainwindow.h \
+HEADERS  += \
 aesencrypt.h \
-    base64/base64.h \
-    base64/hex.h
+    common/base64.h \
+    common/hex.h \
+    test.h
 #
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    test.ui

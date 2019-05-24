@@ -3,8 +3,8 @@
 #include <openssl/des.h>
 #include <assert.h>
 #include <iostream>
-#include "base64/hex.h"
-#include "base64/base64.h"
+#include "common/hex.h"
+#include "common/base64.h"
 
 std::string AesEncrypt::AesEcbEncrypt(const std::string &in, const std::string key, AesEncrypt::AesPadding paddingtype, FixMode mode)
 {
