@@ -14,7 +14,7 @@ std::string AesEncrypt::AesEcbEncrypt(const std::string &in, const std::string k
         return std::string("");
     }
 
-    std::string src_paded = pad(in, AES_BLOCK_SIZE, paddingtype);
+    std::string src_paded = addPad(in, AES_BLOCK_SIZE, paddingtype);
     unsigned char *p = (unsigned char *)src_paded.c_str();
     for (int i = 0; i < src_paded.length() / AES_BLOCK_SIZE; ++i){
         unsigned char dec[AES_BLOCK_SIZE+1] = {'\0'};
@@ -92,7 +92,7 @@ std::string AesEncrypt::AesCbcEncrypt(const std::string &in, const std::string &
         //向量长度错误
         std::cout<<__FUNCTION__<<"ivec length error, need more than "<<AES_BLOCK_SIZE<<ivec.length();
     }
-    std::string src_paded = pad(in, AES_BLOCK_SIZE, paddingtype);
+    std::string src_paded = addPad(in, AES_BLOCK_SIZE, paddingtype);
     //    std::cout<<"src_paded"<<QByteArray(src_paded.c_str());
     if(src_paded.empty()){
         std::cout<<__FUNCTION__<<"pading error.";//添加补充字符失败
@@ -160,7 +160,7 @@ std::string AesEncrypt::AesCbcDecrypt(const std::string &dec, const std::string 
 }
 
 
-std::string AesEncrypt::pad(const std::string &in, int blockSize, AesEncrypt::AesPadding type)
+std::string AesEncrypt::addPad(const std::string &in, int blockSize, AesEncrypt::AesPadding type)
 {
     std::string in_bak = in;
     int paddinglength = blockSize - in_bak.length() % blockSize;//填充长度
