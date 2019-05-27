@@ -24,5 +24,5 @@
  * 7、CBC/OFB/CTR/CFB都需要向量IV，向量IV需要大于等于AES_BLOCK_SIZE
  
  # 工具界面预览
-![avatar](https://github.com/alvin-xian/AesTool/blob/master/software.jpg)
+![img](https://github.com/alvin-xian/AesTool/blob/master/software.jpg)
 
