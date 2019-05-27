@@ -1,6 +1,6 @@
 
-QtGeneratedFiles_debug/*
-QtGeneratedFiles_release/*
+QtGeneratedFiles_debug/*.*
+QtGeneratedFiles_release/*.*
 Aes_demo.pro.user
 bin_debug/Aes_demo.exe
 bin_debug/Aes_demo.ilk
