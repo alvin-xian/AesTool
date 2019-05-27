@@ -1,6 +1,6 @@
 # AesTool AES加密工具
-> A aes tool of aes-ecb/aes-cbc which used openllssl api.    
-> 一个支持aes-ecb、aes-cbc加密的工具；  
+> A aes tool of aes128、aes192、aes256 on ecb/cbc which used openllssl api.    
+> 一个支持aes128、aes192、aes256 on ecb/cbc加密的工具；  
 * 支持ISO10126Padding、PKCS5Padding/PKCS7Padding、ZEROPadding、NoPadding等填充模式；  
 * 支持base64对加密内容进行转换。  
 
@@ -22,5 +22,7 @@
  * 5、AES加密会出现“\0”,需要用hex/base64进行转化
  * 6、AES加密后密文的长度与明文（填充后）长度一致，主要原因是AES加密进行的是一系列的异或操作与循环移位，并没用进行扩展变换等
  * 7、CBC/OFB/CTR/CFB都需要向量IV，向量IV需要大于等于AES_BLOCK_SIZE
-
+ 
+ # 工具界面预览
+![avatar](https://github.com/alvin-xian/AesTool/blob/master/software.jpg)
 
