@@ -46,7 +46,7 @@ std::string AesEncrypt::AesEcbDecrypt(const std::string &dec, const std::string 
     std::string out;
     AES_KEY aes_key;
     if (AES_set_decrypt_key((const unsigned char*)key.c_str(), key.length()*8, &aes_key) < 0){
-        std::cout<<__FUNCTION__<<"AES_set_encrypt_key error";
+        std::cout<<__FUNCTION__<<"AES_set_encrypt_key error"<<std::endl;
         return "";
     }
     std::string dec_uncode = dec;
@@ -91,12 +91,12 @@ std::string AesEncrypt::AesCbcEncrypt(const std::string &in, const std::string &
     }
     if(ivec.length() < AES_BLOCK_SIZE){
         //向量长度错误
-        std::cout<<__FUNCTION__<<"ivec length error, need more than "<<AES_BLOCK_SIZE<<ivec.length();
+        std::cout<<__FUNCTION__<<"ivec length error, need more than "<<AES_BLOCK_SIZE<<ivec.length()<<std::endl;
     }
     std::string src_paded = addPad(in, AES_BLOCK_SIZE, paddingtype);
-    //    std::cout<<"src_paded"<<QByteArray(src_paded.c_str());
+    //    std::cout<<"src_paded"<<QByteArray(src_paded.c_str())<<std::endl;
     if(src_paded.empty()){
-        std::cout<<__FUNCTION__<<"pading error.";//添加补充字符失败
+        std::cout<<__FUNCTION__<<"pading error."<<std::endl;//添加补充字符失败
     }
 
     assert((src_paded.length() % AES_BLOCK_SIZE) == 0);
@@ -129,11 +129,11 @@ std::string AesEncrypt::AesCbcDecrypt(const std::string &dec, const std::string 
     std::string out;
     AES_KEY aes_key;
     if (AES_set_decrypt_key((const unsigned char*)key.c_str(), key.length()*8, &aes_key) < 0){
-        std::cout<<__FUNCTION__<<"AES_set_encrypt_key error";
+        std::cout<<__FUNCTION__<<"AES_set_encrypt_key error"<<std::endl;
         return "";
     }
     if(ivec.length() < AES_BLOCK_SIZE){
-        std::cout<<__FUNCTION__<<"ivec length error, need more than 16"<<ivec.length();
+        std::cout<<__FUNCTION__<<"ivec length error, need more than 16"<<ivec.length()<<std::endl;
     }
     std::string in_data;
     unsigned int in_data_length=0;
@@ -175,16 +175,16 @@ std::string AesEncrypt::addPad(const std::string &in, int blockSize, AesEncrypt:
             case ISO10126Padding:
                 if(i == (paddinglength-1)){
                     in_bak += paddinglength;//最后一位为填充的长度
-                    std::cout<<"ISO10126Padding pad end"<<paddinglength;
+                    std::cout<<"ISO10126Padding pad end"<<paddinglength<<std::endl;
                 }else{
                     char a = rand()%0xff;
                     in_bak += a;//其他位置填充0~0xff随机数
-                    std::cout<<"ISO10126Padding pad at"<<i<<a;
+                    std::cout<<"ISO10126Padding pad at"<<i<<a<<std::endl;
                 }
                 break;
             case PKCS5Padding://虽然blcoksize只能为8，但是为了防止出错，仅仅警告
                 if(blockSize != 8){
-                    std::cout<<__FUNCTION__<<"warning: blocksize should be 8 while paddingtype is PKCS5Padding.";
+                    std::cout<<__FUNCTION__<<"warning: blocksize should be 8 while paddingtype is PKCS5Padding."<<std::endl;
                 }
             case PKCS7Padding:
                 in_bak += paddinglength;//所有位置都是填充的长度
@@ -193,7 +193,7 @@ std::string AesEncrypt::addPad(const std::string &in, int blockSize, AesEncrypt:
                 in_bak += (char)0x00;//所有位置都是填充0
                 break;
             case NoPadding:
-                std::cout<<__FUNCTION__<<"error: data's length is invalid when NoPadding."<<in.length()<<paddinglength;
+                std::cout<<__FUNCTION__<<"error: data's length is invalid when NoPadding."<<in.length()<<paddinglength<<std::endl;
                 return "";
             default:
                 break;
@@ -232,7 +232,7 @@ std::string AesEncrypt::removePad(const std::string &in, int blockSize, AesEncry
     case ISO10126Padding:
     case PKCS5Padding://虽然blcoksize只能为8，但是为了防止出错，仅仅警告
     case PKCS7Padding:{
-        std::cout<<__FUNCTION__<<in.c_str();
+        std::cout<<__FUNCTION__<<in.c_str()<<std::endl;
         bool bpadOneBlock = true;//是否是刚好填充了一个区块，这种情况只会出现在密文刚好为blocksize整数倍下;
         for(int i=(in.length() - blockSize); i<in.length(); i++){
             int value = in.at(i);
@@ -249,13 +249,13 @@ std::string AesEncrypt::removePad(const std::string &in, int blockSize, AesEncry
         }else{
             paddinglength = (int)in.at(in.length()-1);//填充长度为最后一位的值
             if(paddinglength>=blockSize){
-                std::cout<<__FUNCTION__<<"error: data is invalid."<<paddinglength<< blockSize;
+                std::cout<<__FUNCTION__<<"error: data is invalid."<<paddinglength<< blockSize<<std::endl;
                 return std::string();
             }
         }
-        std::cout<<__FUNCTION__<<"paddinglength"<<paddinglength;
+        std::cout<<__FUNCTION__<<"paddinglength"<<paddinglength<<std::endl;
         if((in.length() % blockSize) != 0){
-            std::cout<<__FUNCTION__<<"error: data's length is invalid."<<in.length()<< blockSize;
+            std::cout<<__FUNCTION__<<"error: data's length is invalid."<<in.length()<< blockSize<<std::endl;
             break;
         }
         for(int i=0; i<paddinglength; i++){
