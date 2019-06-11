@@ -16,6 +16,7 @@ std::string AesEncrypt::AesEcbEncrypt(const std::string &in, const std::string k
 
     std::string src_paded = addPad(in, AES_BLOCK_SIZE, paddingtype);
     unsigned char *p = (unsigned char *)src_paded.c_str();
+    assert((src_paded.length() % AES_BLOCK_SIZE) == 0);
     for (int i = 0; i < src_paded.length() / AES_BLOCK_SIZE; ++i){
         unsigned char dec[AES_BLOCK_SIZE+1] = {'\0'};
         AES_encrypt(p + i * AES_BLOCK_SIZE, dec, &aes_key);//获取到区块加密的
@@ -97,6 +98,9 @@ std::string AesEncrypt::AesCbcEncrypt(const std::string &in, const std::string &
     if(src_paded.empty()){
         std::cout<<__FUNCTION__<<"pading error.";//添加补充字符失败
     }
+
+    assert((src_paded.length() % AES_BLOCK_SIZE) == 0);
+
     unsigned char *dec = (unsigned char*)malloc(src_paded.length()+1);
     memset(dec, 0x0, src_paded.length()+1);
 

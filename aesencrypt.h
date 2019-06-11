@@ -22,6 +22,8 @@
  * 而Rijndael使用的密钥和区块长度可以是32位的整数倍，以128位为下限，256比特为上限。
  * 包括AES-ECB,AES-CBC,AES-CTR,AES-OFB,AES-CFB
  * *************************************************
+ * @author alvin
+ * @date 2019-5-20
  */
 class AesEncrypt
 {
@@ -102,12 +104,12 @@ public:
     static std::string AesCbcEncrypt(const std::string &in,
                                      const std::string &key,
                                      const std::string &ivec,
-                                     AesPadding paddingtype = PKCS7Padding,
+                                     AesPadding paddingtype = ZEROPadding,
                                      FixMode mode = Fix_Base64);
     static std::string AesCbcDecrypt(const std::string& dec,
                                      const std::string& key,
                                      const std::string & ivec,
-                                     AesPadding paddingtype = PKCS7Padding,
+                                     AesPadding paddingtype = ZEROPadding,
                                      FixMode mode = Fix_Base64);
 
 
