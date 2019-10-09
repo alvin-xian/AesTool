@@ -5,3 +5,9 @@ Aes_demo.pro.user
 bin_debug/Aes_demo.exe
 bin_debug/Aes_demo.ilk
 bin_debug/Aes_demo.pdb
+Aes_demo.pro.user.4.8-pre1
+*.stash
+*.20
+Makefile
+*.Debug
+*.Release
