@@ -7,7 +7,6 @@
 
 # 工作环境
 * Qt5.7.1 msv2013 32bit  
-* openssl  
 
 # 接口参考
 详见[aesencrypt.h ](https://github.com/alvin-xian/AesTool/blob/master/aesencrypt.h)
