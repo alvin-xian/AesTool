@@ -21,13 +21,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-INCLUDEPATH += $$PWD/openssl/include
-win32{
-   message('commonmodule.pri:setOpenssl lib for win32')
-   LIBS += $$PWD/openssl/lib/win32/libeay32.lib\
-           $$PWD/openssl/lib/win32/ssleay32.lib
-}
 
+
+INCLUDEPATH += $$PWD/common
 win32 {
    CONFIG(release, debug|release){
         DEFINES+=MOC_RELEASE
@@ -36,10 +32,6 @@ win32 {
         OBJECTS_DIR = $$PWD/QtGeneratedFiles_release
         RCC_DIR = $$PWD/QtGeneratedFiles_release
         UI_DIR = $$PWD/QtGeneratedFiles_release
-
-#        QMAKE_LFLAGS_RELEASE    += /MAP
-#        QMAKE_CFLAGS_RELEASE    += /Zi
-#        QMAKE_LFLAGS_RELEASE    += /debug /opt:ref
     }
     CONFIG(debug, debug|release){
         DEFINES+=MOC_DEBUG
@@ -51,23 +43,28 @@ win32 {
     }
 }
 
-macx{
-    message('commonmodule.pri:setOpenssl lib for osx')
-    LIBS += -L$$PWD/openssl/lib/osx -lcrypto -lssl
-}
 
 SOURCES += main.cpp\
-aesencrypt.cpp \
+    common/aes_core.c \
+    common/aes_core.c \
+    common/aes.c \
+    common/aes_cbc.c \
+    common/aes_ecb.c \
+    common/cbc128.c\
     common/base64.cpp \
     common/hex.cpp \
+    aesencrypt.cpp \
     test.cpp
-#
+
 HEADERS  += \
-aesencrypt.h \
     common/base64.h \
     common/hex.h \
+    common/aes.h \
+    common/aes_locl.h \
+    common/modes.h\
+    aesencrypt.h \
     test.h
-#
+
 
 FORMS    += \
     test.ui

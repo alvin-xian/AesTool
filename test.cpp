@@ -1,5 +1,5 @@
 #include "test.h"
-#include "ui_mainwindow.h"
+#include "ui_test.h"
 #include "aesencrypt.h"
 #include <QMessageBox>
 #include <QDebug>

@@ -1,10 +1,9 @@
 #include "aesencrypt.h"
-#include <openssl/aes.h>
-#include <openssl/des.h>
+#include "aes.h"
+#include "hex.h"
+#include "base64.h"
 #include <assert.h>
 #include <iostream>
-#include "common/hex.h"
-#include "common/base64.h"
 
 std::string AesEncrypt::AesEcbEncrypt(const std::string &in, const std::string key, AesEncrypt::AesPadding paddingtype, FixMode mode)
 {
@@ -46,7 +45,7 @@ std::string AesEncrypt::AesEcbDecrypt(const std::string &dec, const std::string 
     std::string out;
     AES_KEY aes_key;
     if (AES_set_decrypt_key((const unsigned char*)key.c_str(), key.length()*8, &aes_key) < 0){
-        std::cout<<__FUNCTION__<<"AES_set_encrypt_key error"<<std::endl;
+        std::cout<<__FUNCTION__<<"AES_set_decrypt_key error"<<std::endl;
         return "";
     }
     std::string dec_uncode = dec;

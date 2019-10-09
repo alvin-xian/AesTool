@@ -2,7 +2,7 @@
 #define AesEncrypt_H
 #include "stdio.h"
 #include "string"
-//AES 加密
+
 /**
  * @brief The AesEncrypt class
  * aes加密总结
